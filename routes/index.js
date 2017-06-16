@@ -1,3 +1,7 @@
+const adminHandler = require('./admin/admin');
+const loginHandler = require('./admin/login');
+const logoutHandler = require('require('./admin/logout')');
+const articleHandler = require('./admin/articles');
 
 module.exports = function(app){
 
@@ -5,9 +9,9 @@ module.exports = function(app){
 //************ Admin ************//
 //=====================================================//
 
-    app.get('/admin', require('./admin/admin').get);
-    app.post('/login', require('./admin/login').post);
-    app.get('/admin/logout', require('./admin/logout').get);
+    app.get('/admin', adminHandler.get);
+    app.post('/login', loginHandler.post);
+    app.get('/admin/logout', logoutHandler.get);
 
     //====================== Categories ==========================//
     app.get('/admin/categories', require('./admin/categories').get);
@@ -17,8 +21,8 @@ module.exports = function(app){
     app.get('/admin/editcategory/:id/:lang', require('./admin/editcategory').get);
 
     //====================== Articles ==========================//
-    app.get('/admin/articles/:id', require('./admin/articles').get);
-    app.post('/admin/articles', require('./admin/articles').post);
+    app.get('/admin/articles/:id', articleHandler.get);
+    app.post('/admin/articles', articleHandler.post);
 
     app.get('/admin/article/:id/:label', require('./admin/editarticle').get);
     app.get('/admin/article/:id/:label/:lang', require('./admin/editarticle').get);
